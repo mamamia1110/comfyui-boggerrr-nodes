@@ -20,14 +20,6 @@ Region = "cn-north-1"
 Host = "visual.volcengineapi.com" 
 ContentType = "application/json" 
 
-# 请求的凭证，从IAM或者STS服务中获取
-# 请在此处填入您的火山引擎AccessKey和SecretKey
-AK = os.getenv("JIMENG_AK")
-SK = os.getenv("JIMENG_SK")
-# 当使用临时凭证时，需要使用到SessionToken传入Header，并计算进SignedHeader中，请自行在header参数中添加X-Security-Token头
-# SessionToken = ""
-
-
 def norm_query(params):
     query = ""
     for key in sorted(params.keys()):
@@ -142,10 +134,27 @@ def request(method, date, query, header, ak, sk, action, body):
                          params=request_param["query"],
                          data=request_param["body"],
                          )
-    return r.json()
+    
+    # 检查HTTP响应状态
+    if r.status_code != 200:
+        raise Exception(f"API请求失败，HTTP状态码: {r.status_code}, 响应内容: {r.text}")
+    
+    # 尝试解析JSON响应
+    try:
+        return r.json()
+    except ValueError as e:
+        raise Exception(f"API响应不是有效的JSON格式，响应内容: {r.text}, 错误: {str(e)}")
 
 
 if __name__ == "__main__":
+    
+    # 获取环境变量
+    AK = os.getenv("SEED_AK")
+    SK = os.getenv("SEED_SK")
+    
+    # 验证环境变量
+    if not AK or not SK:
+        raise Exception("Missing required environment variables: SEED_AK and SEED_SK must be set in .env file")
     
     now = datetime.datetime.utcnow()
     desc = sys.argv[1]
