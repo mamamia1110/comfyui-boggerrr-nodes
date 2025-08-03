@@ -2,12 +2,11 @@
 name = "boggerrr-nodes"
 description = "A node for comfyui to use seedream3.0 and seededit3.0 "
 version = "1.0.1"
-license = { file = "LICENSE.txt" }
-dependencies = ["requests","pillow","numpy"]
+
+dependencies = ["requests", "pillow", "numpy"]
 
 [project.urls]
 Repository = "https://github.com/mamamia1110/comfyui-boggerrr-nodes"
-#  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
 PublisherId = "mamamia1110"
