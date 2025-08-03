@@ -9,5 +9,5 @@ dependencies = ["requests", "pillow", "numpy"]
 Repository = "https://github.com/mamamia1110/comfyui-boggerrr-nodes"
 
 [tool.comfy]
-PublisherId = "mamamia1110"
+PublisherId = "boggerrr1110"
 DisplayName = "Boggerrr Nodes"
