@@ -1,9 +1,9 @@
 [project]
 name = "boggerrr-nodes"
 description = "A node for comfyui to use seedream3.0 and seededit3.0 "
-version = "1.0.1"
+version = "1.0.2"
 
-dependencies = ["requests", "pillow", "numpy"]
+dependencies = ["requests", "pillow", "numpy", "dotenv"]
 
 [project.urls]
 Repository = "https://github.com/mamamia1110/comfyui-boggerrr-nodes"
